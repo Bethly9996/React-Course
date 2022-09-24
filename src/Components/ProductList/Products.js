@@ -11,6 +11,7 @@ import ProductDetails from "./ProductDetails";
 // }
 
 const Products = (props) => {
+  console.log('Product component executed');
   return (
     <li className="list-group-item">
       <div className="media align-items-lg-center flex-column flex-lg-row p-3 d-flex">

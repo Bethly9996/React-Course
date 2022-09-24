@@ -5,6 +5,7 @@ const btnClickEventHandler = () => {
 }
 
 const Button = (props) => {
+  console.log('Buttons component executed');
   return <button onClick={props.eventHandler} className="btn btn-primary">{props.children}</button>;
 };
 

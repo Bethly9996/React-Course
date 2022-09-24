@@ -6,6 +6,7 @@ const onMouseOverEventHandler = () => {
 };
 
 const ProductDetails = (props) => {
+  console.log('ProductDetails component executed');
   let badgeClass = "badge-margin-left-240 badge";
   badgeClass += props.isAvailable
     ? "badge text-bg-success"
@@ -41,7 +42,7 @@ const ProductDetails = (props) => {
         {props.price}
       </h6>
       <Button eventHandler={decrementProductCount}>-</Button>
-      <span style={{ padding: '0px 14 px', 'font-size': 13 }}>
+      <span style={{padding: '0px 14px', 'fontSize': 13}}>
         {displayFormattedProductCount()}
       </span>
       <Button eventHandler={incrementProductCount}>+</Button>
