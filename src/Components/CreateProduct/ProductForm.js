@@ -1,57 +1,81 @@
 import React, { useState } from "react";
 
-const ProductForm = () => {
-  //  let[pName, updateName] = useState('');
-  //  let[pPrice, updatePrice] = useState('');
-  //  let[pDescription, updateDescription] = useState('');
-  //  let[pAvailable, updateAvailability] = useState('');
-  //  let[pImageUrl, updateImageUrl] = useState('');
+const ProductForm = (props) => {
+   let[pName, updateName] = useState('');
+   let[pPrice, updatePrice] = useState('');
+   let[pDescription, updateDescription] = useState('');
+   let[pAvailable, updateAvailability] = useState('');
+   let[pImageUrl, updateImageUrl] = useState('');
 
-  let [userInput, updateUserInput] = useState({
-    pName: "",
-    pPrice: "",
-    pDescription: "",
-    pAvailable: "",
-    pImageUrl: "",
-  });
+  // let [userInput, updateUserInput] = useState({
+  //   pName: "",
+  //   pPrice: "",
+  //   pDescription: "",
+  //   pAvailable: "",
+  //   pImageUrl: "",
+  // });
 
   const nameInputHandler = (event) => {
-    // updateName(event.target.value);
-    updateUserInput({
-      ...userInput,
-      pName: event.target.value });
+    updateName(event.target.value);
+    // updateUserInput({
+    //   ...userInput,
+    //   pName: event.target.value });
   };
 
   const priceInputHandler = (event) => {
-    // updatePrice(event.target.value);
-    updateUserInput({
-      ...userInput,
-      pPrice: event.target.value });
+    updatePrice(event.target.value);
+    // updateUserInput({
+    //   ...userInput,
+    //   pPrice: event.target.value });
   };
 
   const descriptionInputHandler = (event) => {
-    // updateDescription(event.target.value);
-    updateUserInput({
-      ...userInput,
-      pDescription: event.target.value });
+    updateDescription(event.target.value);
+    // updateUserInput({
+    //   ...userInput,
+    //   pDescription: event.target.value });
+
+//     updateUserInput((prevState) => {
+// return{...prevState, pDescription:event.target.value}
+//     })
   };
 
   const availabilityInputHandler = (event) => {
-    // updateAvailability(event.target.value);
-    updateUserInput({
-      ...userInput,
-      pAvailability: event.target.value });
+    updateAvailability(event.target.checked);
+    // updateUserInput({
+    //   ...userInput,
+    //   pAvailability: event.target.value });
   };
 
   const imageInputHandler = (event) => {
-    // updateImageUrl(event.target.value);
-    updateUserInput({
-      ...userInput,
-      pImageUrl: event.target.value });
+    updateImageUrl(event.target.value);
+    // updateUserInput({
+    //   ...userInput,
+    //   pImageUrl: event.target.value });
   };
 
+  const createProductEventHandler = (event) => {
+    event.preventDefault();
+    let product = { 
+      pName: pName,
+      desc: pDescription,
+      isAvailable: Boolean (pAvailable),
+      image: pImageUrl,
+      price: Number (pPrice),
+    }
+
+    updateName('');
+    updatePrice('');
+    updateDescription('');
+    updateAvailability(false);
+    updateImageUrl('');
+
+    // console.log(product)
+    props.createProduct(product);
+  }
+
   return (
-    <form className="row g-3">
+    <form className="row g-3" onSubmit={createProductEventHandler}>
       <div className="col-md-6">
         <label for="name">Product Name</label>
         <input
@@ -59,6 +83,7 @@ const ProductForm = () => {
           className="form-control"
           id="name"
           placeholder="Product Name"
+          value={pName}
           onChange={nameInputHandler}
         />
       </div>
@@ -71,6 +96,7 @@ const ProductForm = () => {
           className="form-control"
           id="price"
           placeholder="Product Price"
+          value={pPrice}
           onChange={priceInputHandler}
         />
       </div>
@@ -82,6 +108,7 @@ const ProductForm = () => {
           className="form-control"
           id="description"
           placeholder="Product Description"
+          value={pDescription}
           onChange={descriptionInputHandler}
         />
       </div>
@@ -92,6 +119,7 @@ const ProductForm = () => {
           type="checkbox"
           role="switch"
           id="isAvailable"
+          checked={pAvailable}
           onChange={availabilityInputHandler}
         />
         <label class="form-check-label" for="isAvailable">
@@ -105,6 +133,7 @@ const ProductForm = () => {
           type="file"
           className="form-control"
           id="select-image"
+          value={pImageUrl}
           onChange={imageInputHandler}
         />
       </div>

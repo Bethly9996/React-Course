@@ -38,7 +38,7 @@ const ProductDetails = (props) => {
       className="d-flex align-items-center justify-content-start mt-1"
       onMouseOver={onMouseOverEventHandler}
     >
-      <h6 className="font-weight-bold my-2" style={{ "margin-right": 30 }}>
+      <h6 className="font-weight-bold my-2" style={{ "marginRight": 30 }}>
         {props.price}
       </h6>
       <Button eventHandler={decrementProductCount}>-</Button>
